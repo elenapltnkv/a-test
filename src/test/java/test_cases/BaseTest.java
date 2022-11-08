@@ -15,6 +15,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Properties;
 
+import static io.restassured.RestAssured.*;
+
 public class BaseTest {
 
     static Properties properties= new Properties();
@@ -43,13 +45,12 @@ public class BaseTest {
         properties.load(Files.newInputStream(Path.of("src/test/application.properties")));
         host=properties.getProperty("host");
 
-        RestAssured.baseURI = host;
-        RestAssured.filters(new AllureRestAssured());
-        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+        baseURI = host;
+        filters(new AllureRestAssured());
+        enableLoggingOfRequestAndResponseIfValidationFails();
         RestAssured.requestSpecification = requestSpecification;
-        RestAssured.responseSpecification =positiveResponseSpecification;
-        RestAssured.responseSpecification = negativeResponseSpecification;
-        //RestAssured.responseSpecification = positiveResponseSpecification;
+        RestAssured.responseSpecification = positiveResponseSpecification;
+        //RestAssured.responseSpecification = negativeResponseSpecification;
 
     }
 }

@@ -16,7 +16,7 @@ ResponseSpecification negativeStatusCode;
      @Test
     void getPingPositiveTest(){
          positiveStatusCode = positiveResponseSpecification
-                 .expect().body("success", equalTo(true));
+            .expect().body("success", equalTo(true));
         given()
                 .baseUri(host)
                 .log()
